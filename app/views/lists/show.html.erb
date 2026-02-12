@@ -1,0 +1,21 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= asset_path "movies.jpg" %>');">
+  <div class="container">
+    <h1>Movie is <strong>art</strong>!</h1>
+  </div>
+</div>
+<h1><%= @list.name %>  </h1>
+<p><%= link_to "Delete", list_path(@list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+
+
+<% @list.bookmarks.each do |bookmark| %>
+<div class="card-product m-1">
+  <img src="<%= bookmark.movie.poster_url %>">
+  <div class="card-product-infos">
+    <h2><%= bookmark.movie.title %></h2>
+    <p> Comment: <%= bookmark.comment %></p>
+    <p>Overview: <%= bookmark.movie.overview %> - <%= link_to "Delete from list", list_bookmark_path(@list, bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
+  </div>
+</div>
+  <% end %>
+
+<div><%= link_to "Back to List", lists_path, class:"align left btn btn-primary mt-3" %> <%= link_to "New bookmark", new_list_bookmark_path(@list), class:"align left btn btn-primary mt-3" %></div>
