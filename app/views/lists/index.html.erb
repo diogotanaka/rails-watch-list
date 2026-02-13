@@ -5,6 +5,8 @@
 </div>
 <h1>Movies List</h1>
 <ul>
+  <%= cl_image_tag("fknbqnwdcfnrork60nsi",
+      width: 400, height: 300, crop: :fill) %>
   <% @lists.each do |list| %>
     <li><%= link_to list.name, list_path(list) %></li>
   <% end %>
